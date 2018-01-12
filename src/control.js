@@ -158,13 +158,17 @@ export default {
     },
 
     _geocode: function(suggest) {
+      var value = this._input.value;
       var requestCount = ++this._requestCount,
         mode = suggest ? 'suggest' : 'geocode',
-        eventData = { input: this._input.value };
+        eventData = { input: value };
 
-      this._lastGeocode = this._input.value;
+      this._lastGeocode = value;
       if (!suggest) {
         this._clearResults();
+      }
+      if (typeof value === "undefined" || value === null || value === "") {
+        return;
       }
 
       this.fire('start' + mode, eventData);
