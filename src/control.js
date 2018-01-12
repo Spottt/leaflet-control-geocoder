@@ -99,25 +99,6 @@ export default {
         }
       } else {
         this._expand();
-        if (L.Browser.touch) {
-          L.DomEvent.addListener(
-            container,
-            'touchstart',
-            function() {
-              this._geocode();
-            },
-            this
-          );
-        } else {
-          L.DomEvent.addListener(
-            container,
-            'click',
-            function() {
-              this._geocode();
-            },
-            this
-          );
-        }
       }
 
       if (this.options.defaultMarkGeocode) {
