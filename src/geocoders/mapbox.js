@@ -10,7 +10,19 @@ export default {
     },
 
     initialize: function(accessToken, options) {
-      L.setOptions(this, options);
+      if (options) {
+        var sharedOptions = options.shared;
+        delete options.shared;
+        var geocodingOptions = options.geocoding;
+        delete options.geocoding;
+        var reverseOptions = options.reverse;
+        delete options.reverse;
+        L.setOptions(this, options);
+        L.Util.extend(this.options.geocodingQueryParams, sharedOptions);
+        L.Util.extend(this.options.geocodingQueryParams, geocodingOptions);
+        L.Util.extend(this.options.reverseQueryParams, sharedOptions);
+        L.Util.extend(this.options.reverseQueryParams, reverseOptions);
+      }
       this.options.geocodingQueryParams.access_token = accessToken;
       this.options.reverseQueryParams.access_token = accessToken;
     },
