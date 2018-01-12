@@ -311,6 +311,7 @@ export default {
     _change: function() {
       var v = this._input.value;
       if (v !== this._lastGeocode) {
+        this._clearResults();
         clearTimeout(this._suggestTimeout);
         if (v.length >= this.options.suggestMinLength) {
           this._suggestTimeout = setTimeout(
@@ -319,8 +320,6 @@ export default {
             }, this),
             this.options.suggestTimeout
           );
-        } else {
-          this._clearResults();
         }
       }
     }
