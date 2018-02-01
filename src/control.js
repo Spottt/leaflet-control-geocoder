@@ -29,15 +29,14 @@ export default {
     onAdd: function(map) {
       var className = 'leaflet-control-geocoder',
         container = L.DomUtil.create('div', className + ' leaflet-bar'),
-        icon = L.DomUtil.create('button', className + '-icon', container),
         form = (this._form = L.DomUtil.create('div', className + '-form', container)),
         input;
 
       this._map = map;
       this._container = container;
 
-      icon.innerHTML = '&nbsp;';
-      icon.type = 'button';
+      var icon = L.DomUtil.create('button', className + '-icon btn btn-square', container);
+      icon.innerHTML = '<i class="md md-search"></i>';
 
       input = this._input = L.DomUtil.create('input', '', form);
       input.type = 'text';
